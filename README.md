@@ -1,2 +1,2 @@
-# Medium
-Webiste to add blogs
+## MEDIUM FULL STACK APP
+-- Webiste to add blogs
