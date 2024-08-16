@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { sign } from "hono/jwt";
+import {signInInputSchema, signUpInputSchema} from "@nikhilchawla9013/medium";
 
 export const userRoute = new Hono<{
   Bindings: {
@@ -15,6 +16,22 @@ userRoute.post("/signup", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
   const body = await c.req.json();
+  try {
+    const success = signUpInputSchema.safeParse(body);
+    // console.log(success.error);
+    if(!success.success) {
+      c.status(400);
+      return c.json({
+        message:"invalid input",
+        // success
+      })
+    }
+  } catch(e) {
+    return c.json({
+      message:"invalid input",
+      // success
+    })
+  }
   let user = null;
   let token;
   const key = await generateKey();
