@@ -77,14 +77,25 @@ userRoute.post("/signin", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const { email, password } = await c.req.json();
+  const { username, password } = await c.req.json();
   // Retrieve the stored user data (replace this with your database retrieval logic)
   let user = null;
   let token;
   try {
+    const success = signUpInputSchema.safeParse({
+      username, password
+    });
+    // console.log(success.error);
+    if(!success.success) {
+      c.status(400);
+      return c.json({
+        message:"invalid input",
+        // success
+      })
+    }
     user = await prisma.user.findUnique({
       where: {
-        email,
+        username,
       },
     });
     if (!user) {
