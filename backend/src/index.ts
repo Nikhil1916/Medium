@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from 'hono/cors'
 const app = new Hono<{
   Bindings: {
     DATABASE_URL: string;
@@ -8,6 +9,7 @@ const app = new Hono<{
 import { userRoute } from "./Routes/User";
 import { blogRouter } from "./Routes/Blog";
 
+app.use('/*', cors())
 app.route("/api/v1/user",userRoute);
 app.route("/api/v1/blog",blogRouter);
 export default app;

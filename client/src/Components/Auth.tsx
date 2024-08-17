@@ -1,15 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputComponent from "./InputComponent";
 import { useState } from "react";
 import { signUpInput } from "@nikhilchawla9013/medium";
-
+import axios from "axios";
+import {API_ENDPOINT} from "../config";
 const Auth = ({type}:{type:"signin" | "signup"}) => {
   const [signUpInputVar, setSignUpInput] = useState<signUpInput>({
     username:"",
     password:"",
     name:""
   });
+  const navigate = useNavigate();
   const isSignIn = type === 'signin';
+
+  async function submitForm() {
+    try {
+      const endPoint = isSignIn ? "/api/v1/user/signin" : "/api/v1/user/signup"
+      await axios.post(API_ENDPOINT+endPoint, signUpInputVar).then((d)=>{
+        localStorage.setItem("token",d?.data?.token);
+        navigate("/blogs");
+      })
+    } catch(e) {
+      //
+    }
+  }
   return (
     <div className="flex justify-center items-center mt-[14%] min-w-[80%]">
       <div className="p-4">
@@ -31,7 +45,7 @@ const Auth = ({type}:{type:"signin" | "signup"}) => {
           </div>
           <div className="flex flex-col gap-2 font-medium text-sm mt-3">
             <InputComponent label="Email" placeholder="abc@gmail.com" onChange={(e)=>{
-              setSignUpInput((p:any)=>{
+              setSignUpInput((p:signUpInput)=>{
                 return {
                   ...p,
                   username:e.target.value
@@ -41,7 +55,7 @@ const Auth = ({type}:{type:"signin" | "signup"}) => {
           </div>
           <div className="flex flex-col gap-2 font-medium text-sm mt-3">
           <InputComponent label="Password" type="password" onChange={(e)=>{
-              setSignUpInput((p:any)=>{
+              setSignUpInput((p:signUpInput)=>{
                 return {
                   ...p,
                   password:e.target.value
@@ -49,7 +63,7 @@ const Auth = ({type}:{type:"signin" | "signup"}) => {
               })
             }} />
           </div>
-          <button className="bg-black text-white p-2 w-full mt-2 rounded-sm">
+          <button onClick={submitForm} className="bg-black text-white p-2 w-full mt-2 rounded-sm">
             {isSignIn ? "Sign In" :"Sign Up"}
           </button>
         </div>

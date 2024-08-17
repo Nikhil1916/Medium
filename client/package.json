@@ -12,9 +12,11 @@
   "dependencies": {
     "@nikhilchawla9013/medium": "^1.0.3",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "toastify": "^2.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

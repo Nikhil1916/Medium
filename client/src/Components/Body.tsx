@@ -19,6 +19,10 @@ const Body = () => {
       element: <Signin />,
     },
     {
+      path: "/blogs",
+      element: <Blog />,
+    },
+    {
       path: "/blog/:id",
       element: <Blog />,
     },
