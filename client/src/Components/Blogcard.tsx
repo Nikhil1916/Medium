@@ -9,7 +9,7 @@ const Blogcard = ({
   publishedDate,
 }: BlogCardProps) => {
   return (
-    <div className="m-2 p-4 border-b-2 mb-4">
+    <div className="m-2 p-4 border-b-2 mb-4 break-words">
       <div className="flex gap-2 items-center">
         <Avatar initials="JL" />
         <div className="flex items-center">
@@ -20,8 +20,8 @@ const Blogcard = ({
           <span className="text-gray-500 text-sm">{publishedDate}</span>
         </div>
       </div>
-      <div className="font-bold text-2xl">{title}</div>
-      <div className="font-normal w-[28rem]">
+      <div className="font-bold text-2xl break-words">{title}</div>
+      <div className="font-normal break-words">
         {content?.length > 100 ? content.slice(0, 100) + "..." : content}
       </div>
     </div>

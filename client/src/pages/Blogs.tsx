@@ -10,7 +10,7 @@ const Blogs = () => {
     }
   return (
     <div className='flex justify-center'>
-    <div className='max-w-[30rem]'>
+    <div className='min-w-[15rem] max-w-[10rem] md:max-w-[30rem]'>
         {
             blogs?.map((blog:Blog)=>{
                 return <Blogcard
