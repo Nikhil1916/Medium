@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signUpInput } from "@nikhilchawla9013/medium";
 import axios from "axios";
 import {API_ENDPOINT} from "../config";
+import { StorageKeys } from "../utils/interfaces";
 const Auth = ({type}:{type:"signin" | "signup"}) => {
   const [signUpInputVar, setSignUpInput] = useState<signUpInput>({
     username:"",
@@ -17,7 +18,7 @@ const Auth = ({type}:{type:"signin" | "signup"}) => {
     try {
       const endPoint = isSignIn ? "/api/v1/user/signin" : "/api/v1/user/signup"
       await axios.post(API_ENDPOINT+endPoint, signUpInputVar).then((d)=>{
-        localStorage.setItem("token",d?.data?.token);
+        localStorage.setItem(StorageKeys.token,d?.data?.token);
         navigate("/blogs");
       })
     } catch(e) {

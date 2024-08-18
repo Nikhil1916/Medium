@@ -9,7 +9,15 @@ const app = new Hono<{
 import { userRoute } from "./Routes/User";
 import { blogRouter } from "./Routes/Blog";
 
-app.use('/*', cors())
+// app.use('/*', cors());
+app.use(
+  '/*', // You can specify the path pattern here, or use '*' to apply globally
+  cors({
+    origin: '*', // You can restrict this to your frontend's URL like 'https://your-frontend.com'
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  })
+);
 app.route("/api/v1/user",userRoute);
 app.route("/api/v1/blog",blogRouter);
 export default app;
