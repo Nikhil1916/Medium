@@ -4,6 +4,7 @@ import Blog from "../pages/Blog";
 import Signin from "../pages/Signin";
 import Blogs from "../pages/Blogs";
 import MainLayout from "./Mainlayout";
+import Publish from "../pages/Publish";
 const Body = () => {
   const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const Body = () => {
           path: "/blog/:id",
           element: <Blog />,
         },
+        {
+          path:"/publish",
+          element: <Publish/>
+        }
       ]
     },
   ]);

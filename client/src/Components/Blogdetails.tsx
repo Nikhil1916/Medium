@@ -2,11 +2,27 @@ import React from 'react'
 import useBlog from '../utils/useBlog'
 import { useParams } from 'react-router-dom'
 import Avatar from './Avatar';
+import Skeleton from './Skeleton';
 
 const Blogdetails = () => {
     const {id} = useParams();
     // console.log(id);
     const blogDetail:any = useBlog(id as string);
+    console.log(blogDetail);
+    if(!blogDetail?.blog) {
+        return (
+            <div className='grid grid-cols-12'>
+                <div className='col-span-7'>
+                <Skeleton/>
+                </div>
+                <div className='col-span-1'></div>
+                <div className='col-span-4'>
+                <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                </div>
+            </div>
+        )
+    }
   return (
     <div>
         <div className='grid grid-cols-12'>

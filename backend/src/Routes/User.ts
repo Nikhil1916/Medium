@@ -70,6 +70,7 @@ userRoute.post("/signup", async (c) => {
   return c.json({
     // user,
     token,
+    name: user?.name
   });
 });
 
@@ -133,6 +134,7 @@ userRoute.post("/signin", async (c) => {
   }
   return c.json({
     token,
+    name: user?.name
   });
 });
 

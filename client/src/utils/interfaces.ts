@@ -15,7 +15,8 @@ export interface BlogCardProps {
 }
 
 export enum StorageKeys {
-    token = "token"
+    token = "token",
+    name = "name"
 }
 
 

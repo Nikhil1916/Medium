@@ -19,6 +19,7 @@ const Auth = ({type}:{type:"signin" | "signup"}) => {
       const endPoint = isSignIn ? "/api/v1/user/signin" : "/api/v1/user/signup"
       await axios.post(API_ENDPOINT+endPoint, signUpInputVar).then((d)=>{
         localStorage.setItem(StorageKeys.token,d?.data?.token);
+        localStorage.setItem(StorageKeys.name,d?.data?.name);
         navigate("/blogs");
       })
     } catch(e) {

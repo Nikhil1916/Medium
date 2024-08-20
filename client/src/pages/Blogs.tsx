@@ -3,11 +3,18 @@ import Blogcard from '../Components/Blogcard'
 import useBlogs from '../utils/useBlogs'
 import { Blog } from '../utils/interfaces';
 import { Link } from 'react-router-dom';
+import Skeleton from '../Components/Skeleton';
 
 const Blogs = () => {
     const { blogs , loading } = useBlogs();
     if(loading) {
-      return <div>Loading...</div>
+      return (<div className='flex justify-center'>
+        <div>
+        {[1,2,3,4,5,6,7,8]?.map((d,i)=>{
+          return <Skeleton key={i} />
+        })}
+        </div>
+      </div>)
     }
   return (
     <div className='flex justify-center'>
