@@ -159,6 +159,14 @@ blogRouter.get("/:id", async(c:Context) => {
         where: {
          id: id
         },
+        include: {
+          author:{
+            select:{
+              name:true,
+            username: true
+            }
+          }
+        }
       });
     } catch (e) {
         c.status(403);

@@ -11,7 +11,7 @@ const Blogcard = ({
   return (
     <div className="m-2 p-4 border-b-2 mb-4 break-words">
       <div className="flex gap-2 items-center">
-        <Avatar initials="JL" />
+        <Avatar name={authorName} />
         <div className="flex items-center">
           <span className="text-sm font-normal text-gray-600">{authorName}</span>
           <div className="flex flex-col justify-center">
