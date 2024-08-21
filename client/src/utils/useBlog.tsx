@@ -16,7 +16,7 @@ const useBlog = (id:string) => {
                 Authorization: "Bearer "+ localStorage.getItem(StorageKeys.token)
             }
         });
-        console.log(blogDetail);
+        // console.log(blogDetail);
         setLoading(false);
         setBlog(blogDetail.data.blog);
     }

@@ -23,7 +23,7 @@ const CreateBlog = () => {
           },
         }
       );
-      console.log(blog);
+      // console.log(blog);
       navigate("/blog/"+blog?.data?.blog?.id);
     } catch (e) {
       //

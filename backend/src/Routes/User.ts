@@ -61,7 +61,7 @@ userRoute.post("/signup", async (c) => {
     };
     token = await sign(payload, c.env.JWT_SECRET);
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     return c.json({
       error: e,
       userData,

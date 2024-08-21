@@ -8,10 +8,10 @@ const Blogdetails = () => {
     const {id} = useParams();
     // console.log(id);
     const blogDetail:any = useBlog(id as string);
-    console.log(blogDetail);
+    // console.log(blogDetail);
     if(!blogDetail?.blog) {
         return (
-            <div className='grid grid-cols-12'>
+            <div className='flex flex-col md:grid grid-cols-12'>
                 <div className='col-span-7'>
                 <Skeleton/>
                 </div>
@@ -25,7 +25,7 @@ const Blogdetails = () => {
     }
   return (
     <div>
-        <div className='grid grid-cols-12'>
+        <div className='flex flex-col gap-2 md:grid grid-cols-12'>
             <div className='col-span-7'>
                 <div className='p-2 shadow-sm'>
                     <h1 className='font-bold text-2xl break-words'>{blogDetail?.blog?.title}</h1>
